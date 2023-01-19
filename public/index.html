@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Biodata Fauzul Manis</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="bingkai">
+      <table>
+        <caption>
+          <b> My Biodata </b>
+        </caption>
+      </table>
+    </div>
+    <script>
+      async function biodata() {
+        const res = await fetch("/api/bio");
+        const data = await res.json();
+        console.log(data);
+        const table =  document.querySelector("table");
+        for(let bio in data){
+            console.log(data[bio]);
+            const tr = document.createElement("tr");
+            data[bio].forEach(e => {
+                const td = document.createElement("td");
+                td.textContent = e;
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        }
+      }
+      biodata();
+    </script>
+  </body>
+</html>
